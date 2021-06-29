@@ -120,23 +120,26 @@ const Heading = ({
 
     return (
       <div>
-        <form noValidate autoComplete="off">
-          <TextareaAutosize
-            value={postMessage}
-            onChange={(e) => setPostMessage(e.target.value)}
-            className={classes.textField}
-            rowsMin={3}
-            placeholder="create a post"
-          />
-          <Button
-            onClick={() => createPost(id, postMessage)}
-            className={classes.btn}
-            variant="outlined"
-            color="primary"
-          >
-            Post
-          </Button>
-        </form>
+        {isSignedIn ? (
+          <form noValidate autoComplete="off">
+            <TextareaAutosize
+              value={postMessage}
+              onChange={(e) => setPostMessage(e.target.value)}
+              className={classes.textField}
+              rowsMin={3}
+              placeholder="create a post"
+            />
+            <Button
+              onClick={() => createPost(id, postMessage)}
+              className={classes.btn}
+              variant="outlined"
+              color="primary"
+            >
+              Post
+            </Button>
+          </form>
+        ) : null}
+        {console.log(specificPosts)}
         <Grid container spacing={3} className={classes.grid}>
           {specificPosts.map((post) => {
             return (
@@ -144,9 +147,11 @@ const Heading = ({
                 <Card>
                   <CardHeader
                     avatar={
-                      <Avatar aria-label="recipe" className={classes.avatar}>
-                        {post.name[0]}
-                      </Avatar>
+                      posts.length !== 0 ? (
+                        <Avatar className={classes.avatar}>
+                          {post.name ? post.name[0] : "u"}
+                        </Avatar>
+                      ) : null
                     }
                     action={
                       isSignedIn && admin === channel.userId ? (

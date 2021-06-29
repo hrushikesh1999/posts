@@ -46,7 +46,7 @@ const Explore = ({ channels, fetchChannels }) => {
     if (channels.length !== 0) {
       return (
         <div>
-          <Heading id={channels[selectedChannel].id} path="explore"></Heading>
+          <Heading id={channels[selectedChannel].id}></Heading>
         </div>
       );
     }

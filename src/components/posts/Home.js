@@ -66,7 +66,7 @@ const Home = ({ adminChannels, fetchAdminChannels, isSignedIn, userId }) => {
     if (isSignedIn && adminChannels.length !== 0) {
       return (
         <div>
-          <Heading id={adminChannels[selectedChannel].id} path="home"></Heading>
+          <Heading id={adminChannels[selectedChannel].id}></Heading>
         </div>
       );
     } else {
